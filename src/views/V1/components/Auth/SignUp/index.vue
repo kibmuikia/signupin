@@ -16,7 +16,11 @@
           </v-flex>
         </v-card-title>
         <v-card-text>
-          <v-form ref="formSignUp" @submit.prevent="signUp">
+          <v-form
+            ref="formSignUp"
+            @submit.prevent="signUp"
+            enctype="multipart/form-data"
+          >
             <v-layout wrap row>
               <v-flex xs12>
                 <v-text-field
@@ -122,8 +126,10 @@ export default {
       await db
         .collection("users")
         .add(this.user)
+        // eslint-disable-next-line
         .then(docRef => {
           // eslint-disable-next-line
+          // console.log(docRef);
           // console.log("Document written with ID: ", docRef.id);
           utils.showAlert(
             "Success",
@@ -131,8 +137,8 @@ export default {
             "success"
           );
           this.loadFlag = false;
-          this.resetForm();
-          this.$router.push("/auth/sign-in");
+          // this.resetForm();
+          // this.$router.push("/auth/sign-in");
         })
         .catch(error => {
           // console.error("Error adding document: ", error);

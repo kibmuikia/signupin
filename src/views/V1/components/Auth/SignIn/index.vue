@@ -122,7 +122,7 @@ export default {
                 "success"
               );
               this.resetForm();
-              this.$router.push("/dashboard");
+              this.$router.push("/dashboard?user=" + doc.data().name);
             });
           } //end-Else-If
         })
