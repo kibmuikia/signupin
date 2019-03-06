@@ -137,8 +137,8 @@ export default {
             "success"
           );
           this.loadFlag = false;
-          // this.resetForm();
-          // this.$router.push("/auth/sign-in");
+          this.resetForm();
+          this.$router.push("/auth/sign-in");
         })
         .catch(error => {
           // console.error("Error adding document: ", error);
