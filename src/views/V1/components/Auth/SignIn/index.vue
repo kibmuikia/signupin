@@ -35,7 +35,7 @@
                   :type="passwordFieldType"
                   @mouseenter="passwordFieldType = 'text'"
                   @mouseleave="passwordFieldType = 'password'"
-                  append-icon="lock"
+                  append-icon="remove_red_eye"
                 ></v-text-field>
               </v-flex>
             </v-layout>
@@ -139,9 +139,25 @@ export default {
       });
       this.$refs.formSignIn.resetValidation();
       // this.$refs.formSignIn.reset();
-    } //end-resetForm
+    }, //end-resetForm
+    checkMail() {
+      if (this.$route.query.mail) {
+        const Cryptr = require("cryptr");
+        const cryptr = new Cryptr("myTotalySecretKey");
+        // eslint-disable-next-line
+        // console.log(`Value of mail :: ${this.$route.query.mail} .`);
+        const decryptedString = cryptr.decrypt(this.$route.query.mail);
+        // eslint-disable-next-line
+        // console.log(`Value of decryptedString :: ${decryptedString} .`);
+        // this.user.email = this.$route.query.mail;
+        this.user.email = decryptedString;
+      } //end-if
+    } //end-checkMail
   }, //end-methods
-  computed: {} //end-computed
+  computed: {}, //end-computed
+  mounted() {
+    this.checkMail();
+  } //end-mounted
 };
 </script>
 <style scoped></style>

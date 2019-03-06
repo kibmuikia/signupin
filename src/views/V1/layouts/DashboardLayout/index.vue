@@ -40,24 +40,28 @@
               </v-flex>
             </v-layout>
           </v-card-text>
-          <v-card-action>
-            <v-tooltip bottom>
-              <template v-slot:activator="{ on }">
-                <v-btn
-                  fab
-                  small
-                  dark
-                  icon
-                  color="red"
-                  v-on="on"
-                  v-on:click="logout"
-                >
-                  <v-icon>close</v-icon>
-                </v-btn>
-              </template>
-              <span>Sign Out</span>
-            </v-tooltip>
-          </v-card-action>
+          <v-card-actions>
+            <v-layout wrap text-xs-center>
+              <v-flex xs12>
+                <v-tooltip bottom>
+                  <template v-slot:activator="{ on }">
+                    <v-btn
+                      fab
+                      small
+                      dark
+                      icon
+                      color="red"
+                      v-on="on"
+                      v-on:click="logout"
+                    >
+                      <v-icon>close</v-icon>
+                    </v-btn>
+                  </template>
+                  <span>Sign Out</span>
+                </v-tooltip>
+              </v-flex>
+            </v-layout>
+          </v-card-actions>
         </v-card>
       </v-flex>
     </v-layout>

@@ -57,7 +57,7 @@
                   :type="passwordFieldType"
                   @mouseenter="passwordFieldType = 'text'"
                   @mouseleave="passwordFieldType = 'password'"
-                  append-icon="lock"
+                  append-icon="remove_red_eye"
                 ></v-text-field>
               </v-flex>
             </v-layout>
@@ -137,8 +137,13 @@ export default {
             "success"
           );
           this.loadFlag = false;
+
+          const Cryptr = require("cryptr");
+          const cryptr = new Cryptr("myTotalySecretKey");
+          const encryptedMail = cryptr.encrypt(this.user.email);
+
+          this.$router.push(`/auth/sign-in?mail=${encryptedMail}`);
           this.resetForm();
-          this.$router.push("/auth/sign-in");
         })
         .catch(error => {
           // console.error("Error adding document: ", error);
