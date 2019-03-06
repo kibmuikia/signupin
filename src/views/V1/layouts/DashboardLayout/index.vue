@@ -40,6 +40,24 @@
               </v-flex>
             </v-layout>
           </v-card-text>
+          <v-card-action>
+            <v-tooltip bottom>
+              <template v-slot:activator="{ on }">
+                <v-btn
+                  fab
+                  small
+                  dark
+                  icon
+                  color="red"
+                  v-on="on"
+                  v-on:click="logout"
+                >
+                  <v-icon>close</v-icon>
+                </v-btn>
+              </template>
+              <span>Sign Out</span>
+            </v-tooltip>
+          </v-card-action>
         </v-card>
       </v-flex>
     </v-layout>
@@ -47,6 +65,7 @@
 </template>
 <script>
 import { db } from "@/fire/V1";
+import utils from "@/utils/V1";
 
 export default {
   name: "dashboard-layout",
@@ -102,7 +121,19 @@ export default {
             console.error(error);
           });
       }
-    }
+    }, //end-checkQueryString
+    logout() {
+      try {
+        this.$router.push("/");
+        utils.showAlert("Success", "You are logged out", "success");
+        var self = this;
+        Object.keys(this.userDetails).forEach(key => {
+          self.userDetails[key] = "";
+        });
+      } catch (e) {
+        utils.showAlert("Error", e, "error");
+      }
+    } //end-logout
   },
   computed: {}
 };
